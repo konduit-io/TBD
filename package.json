@@ -1,0 +1,50 @@
+{
+  "name": "@nulliel/redux-ts",
+  "version": "1.1.0",
+  "description": "Opinionated and type safe state management",
+  "sideEffects": false,
+  "main": "lib/es/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "**/*.js",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "scripts": {
+    "test": "jest",
+    "prepublishOnly": "npm run build",
+    "build": "rimraf lib/es && tsc"
+  },
+  "repository": "https://github.com/nulliel/redux-ts",
+  "license": "Apache",
+  "bugs": {
+    "url": "https://github.com/nulliel/redux-ts/issues"
+  },
+  "homepage": "https://github.com/nulliel/redux-ts#readme",
+  "dependencies": {
+    "lib": "^4.0.2",
+    "react": "^16.8.6"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.8",
+    "@types/ramda": "^0.26.16",
+    "@types/react": "^16.8.23",
+    "@types/redux": "^3.6.0",
+    "jest": "^24.8.0",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
+    "tslib": "^1.10.0",
+    "typescript": "^3.5.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "(\\.|/)spec\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ]
+  }
+}
