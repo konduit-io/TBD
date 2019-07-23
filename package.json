@@ -1,6 +1,6 @@
 {
   "name": "@nulliel/redux-ts",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Opinionated and type safe state management",
   "sideEffects": false,
   "main": "lib/es/index.js",

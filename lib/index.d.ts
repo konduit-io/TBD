@@ -162,8 +162,8 @@ export function createStore(...middleware: Middleware[]): Store
 // Hooks
 //======
 export interface ProviderProps {
-    children:   ReactChild
-    middleware: Middleware[]
+    children:    ReactChild
+    middleware?: Middleware[]
 }
 
 export function StateProvider({ children, middleware }: ProviderProps): ReactElement

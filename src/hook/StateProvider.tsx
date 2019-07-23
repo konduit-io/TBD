@@ -12,8 +12,8 @@ import { useShouldUpdate } from "./useShouldUpdate"
 // Props
 //======
 export interface ProviderProps {
-    children:   ReactChild
-    middleware: Middleware[]
+    children:    ReactChild
+    middleware?: Middleware[]
 }
 
 /**
@@ -22,7 +22,7 @@ export interface ProviderProps {
 export function StateProvider({ children, middleware }: ProviderProps)
 {
     const doUpdate = useShouldUpdate()
-    const storeRef = useRef<Store>(doUpdate ? createStore(...middleware) : {} as Store)
+    const storeRef = useRef<Store>(doUpdate ? createStore(...middleware || []) : {} as Store)
 
     return (
         <StateContext.Provider value={storeRef.current}>
