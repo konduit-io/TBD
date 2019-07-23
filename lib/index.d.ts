@@ -1,4 +1,4 @@
-import { ReactElement } from "react"
+import { ReactChild, ReactElement } from "react"
 
 class Slice<TState>
 {
@@ -161,11 +161,13 @@ export function createStore(...middleware: Middleware[]): Store
 //======
 // Hooks
 //======
-interface ProviderProps {
-    children: ReactChild
+export interface ProviderProps {
+    children:   ReactChild
+    middleware: Middleware[]
 }
 
-export function StateProvider({ children }: ProviderProps): ReactElement
+export function StateProvider({ children, middleware }: ProviderProps): ReactElement
 
 export function useSlice<T>(reducer: Reducer<T>): T
 export function useDispatch(): Dispatch
+
