@@ -1,0 +1,21 @@
+{
+    "name": "@nulliel/store",
+    "version": "0.0.0",
+    "description": "Opinionated and type safe state management",
+    "sideEffects": false,
+    "author": "nulliel <stephen.ribich@gmail.com>",
+    "license": "MIT",
+    "main": "lib/index.js",
+    "types": "index.d.ts",
+    "files": [
+        "**/*.js",
+        "**/*.ts",
+        "**/*.tsx"
+    ],
+    "repository": "https://github.com/nulliel/redux-ts",
+    "bugs": "https://github.com/nulliel/redux-ts/issues",
+    "homepage": "https://github.com/nulliel/redux-ts#readme",
+    "peerDependencies": {
+        "react": ">=16.8.0"
+    }
+}

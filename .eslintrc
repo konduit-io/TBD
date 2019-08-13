@@ -1,0 +1,74 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json",
+    "tsconfigRootDir":  ".",
+    "useJSXTextNode": "true",
+    "warnOnUnsupportedTypeScriptVersion": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "plugins": [
+    "compat"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "airbnb-typescript/base",
+    "plugin:compat/recommended"
+  ],
+  "rules": {
+    //================
+    // ESLint / Airbnb
+    //================
+    "arrow-parens": ["error", "always"],
+    "comma-dangle": ["error", {
+      "arrays":    "always-multiline",
+      "objects":   "always-multiline",
+      "imports":   "always-multiline",
+      "exports":   "always-multiline",
+      "functions": "always-multiline"
+    }],
+    "implicit-arrow-linebreak": "off",
+    "@typescript-eslint/indent": ["error", 4, {
+      "SwitchCase": 1
+    }],
+    "key-spacing": ["error", { "align": "value" }],
+    "no-confusing-arrow": "off",
+    "no-multi-spaces": "off",
+    "object-curly-newline": ["error", {
+      "multiline": true,
+      "minProperties": 5,
+      "consistent": true
+    }],
+    "quotes": ["error", "double"],
+
+    "spaced-comment": ["error", "always", { "exceptions": ["="] }],
+
+    "@typescript-eslint/semi": ["error", "never"],
+
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error",
+
+    "brace-style": ["error", "stroustrup"]
+
+    // "@typescript-eslint/explicit-function-return-type": "off",
+
+    //=======
+    // Import
+    //=======
+    // "import/no-unresolved": "off"
+  }
+}

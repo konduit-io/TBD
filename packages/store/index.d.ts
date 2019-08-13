@@ -144,6 +144,7 @@ interface InternalWrapReducer {
 
 interface InternalSlice<TState> extends Slice<TState> {
     updateState(action: AnyAction): void
+    injectState(newState: TState): void
 }
 
 export interface Middleware {

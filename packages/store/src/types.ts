@@ -44,4 +44,5 @@ export interface WrapReducer {
 
 export interface InternalSlice<TState> extends Slice<TState> {
     updateState(action: AnyAction): void
+    injectState(newState: TState): void
 }

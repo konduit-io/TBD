@@ -1,4 +1,5 @@
-lib/es
+.jest
+packages/**/lib
 
 # Logs
 logs

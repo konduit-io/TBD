@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "lib/es",
+    "outDir": "lib",
     "allowSyntheticDefaultImports": true,
     "allowJs": false,
     "checkJs": false,
@@ -31,17 +31,10 @@
     "removeComments": true,
     "skipLibCheck": true,
     "typeRoots": ["./node_modules/@types", "./node_modules/jest-enzyme"],
-    "rootDirs": [ "/src", "/test", "/mock", "typings"],
-    "baseUrl": ".",
     "esModuleInterop": true
   },
-  "include": [
-    "./src",
-    "./src/**/*",
-    "./typings.d.ts"
-  ],
   "exclude": [
-    "./node_modules",
-    "./src/**/*.spec.*"
+    "node_modules",
+    "**/*.spec.*"
   ]
 }

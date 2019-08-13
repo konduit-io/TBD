@@ -1,50 +1,71 @@
 {
-  "name": "@nulliel/redux-ts",
-  "version": "1.2.1",
-  "description": "Opinionated and type safe state management",
-  "sideEffects": false,
-  "main": "lib/es/index.js",
-  "types": "lib/index.d.ts",
-  "files": [
-    "**/*.js",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "scripts": {
-    "test": "jest",
-    "prepublishOnly": "npm run build",
-    "build": "rimraf lib/es && tsc"
-  },
-  "repository": "https://github.com/nulliel/redux-ts",
-  "license": "Apache",
-  "bugs": {
-    "url": "https://github.com/nulliel/redux-ts/issues"
-  },
-  "homepage": "https://github.com/nulliel/redux-ts#readme",
-  "dependencies": {
-    "lib": "^4.0.2",
-    "react": "^16.8.6"
-  },
-  "devDependencies": {
-    "@types/jest": "^24.0.15",
-    "@types/node": "^12.6.8",
-    "@types/ramda": "^0.26.16",
-    "@types/react": "^16.8.23",
-    "@types/redux": "^3.6.0",
-    "jest": "^24.8.0",
-    "rimraf": "^2.6.3",
-    "ts-jest": "^24.0.2",
-    "tslib": "^1.10.0",
-    "typescript": "^3.5.3"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
+    "name": "root",
+    "private": true,
+    "scripts": {
+        "bootstrap": "lerna bootstrap --use-workspaces -- --peer",
+        "test": "jest",
+        "coverage": "jest --coverage",
+        "lint": "lerna exec eslint -- -c ../../.eslintrc src/**/*",
+        "clean": "lerna exec rimraf lib",
+        "build": "npm run clean && lerna exec tsc"
     },
-    "testRegex": "(\\.|/)spec\\.ts$",
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ]
-  }
+    "devDependencies": {
+        "@types/jest": "^24.0.17",
+        "@types/node": "^12.7.1",
+        "@types/react": "^16.9.1",
+        "@typescript-eslint/eslint-plugin": "^1.13.0",
+        "@typescript-eslint/parser": "^1.13.0",
+        "eslint": "^6.1.0",
+        "eslint-config-airbnb-base": "^14.0.0",
+        "eslint-config-airbnb-typescript": "^4.0.1",
+        "eslint-plugin-compat": "^3.3.0",
+        "eslint-plugin-import": "^2.18.2",
+        "jest": "^24.8.0",
+        "lerna": "^3.13.1",
+        "react": "^16.9.0",
+        "rimraf": "^2.6.3",
+        "ts-jest": "^24.0.2",
+        "tslib": "^1.10.0",
+        "typescript": "^3.5.3"
+    },
+    "workspaces": [
+        "packages/*"
+    ],
+    "browserslist": [
+        "last 2 versions",
+        "IE 11",
+        "not IE < 11"
+    ],
+    "jest": {
+        "cacheDirectory": ".jest/cache",
+        "coverageDirectory": ".jest/coverage",
+        "coveragePathIgnorePatterns": [
+            "<rootDir>/packages/(?:.+?)/lib/"
+        ],
+        "coverageReporters": [
+            "html",
+            "text"
+        ],
+        "coverageThreshold": {
+            "global": {
+                "branches": 100,
+                "functions": 100,
+                "lines": 100,
+                "statements": 100
+            }
+        },
+        "moduleFileExtensions": [
+            "ts",
+            "js"
+        ],
+        "testPathIgnorePatterns": [
+            "<rootDir>/packages/(?:.+?)/lib/"
+        ],
+        "testMatch": [
+            "<rootDir>/packages/**/src/*.spec.ts?(x)"
+        ],
+        "transform": {
+            "^.+\\.ts$": "ts-jest"
+        }
+    }
 }

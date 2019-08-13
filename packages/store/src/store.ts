@@ -7,8 +7,7 @@ import { Reducer } from "./reducer"
 import { Dispatch, InternalSlice, InternalStore, InternalWrapReducer, Middleware, MiddlewareAPI, Resolve } from "./types"
 import { unstack } from "./unstack"
 
-export function createStore(...middleware: Middleware[])
-{
+export function createStore(...middleware: Middleware[]) {
     const store = {
         slices: new Map(),
         isDispatching: false,
@@ -29,10 +28,8 @@ export function createStore(...middleware: Middleware[])
     return store
 }
 
-function createDispatch(store: InternalStore): Dispatch
-{
-    function dispatch(action: AnyAction)
-    {
+function createDispatch(store: InternalStore): Dispatch {
+    function dispatch(action: AnyAction) {
         if (store.isDispatching) {
             throw new Error("Reducers may not dispatch actions")
         }
@@ -102,6 +99,14 @@ function createWrapReducer(store: InternalStore): InternalWrapReducer
             const newState = state = reducer(state, action)
 
             if (oldState !== newState) {
+                slice.update()
+            }
+        }
+
+        // @ts-ignore
+        slice.injectState = function injectState(newState = reducer(undefined, { type: "@store/init"})) {
+            if (state !== newState) {
+                state = newState
                 slice.update()
             }
         }
