@@ -17,5 +17,6 @@
     "homepage": "https://github.com/nulliel/redux-ts#readme",
     "dependencies": {
         "@nulliel/store": "^0.1.0"
-    }
+    },
+    "gitHead": "343de5f3ea8df1e0bbc01d824dc247c704b9a41c"
 }
