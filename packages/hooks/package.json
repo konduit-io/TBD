@@ -15,5 +15,8 @@
     "repository": "https://github.com/nulliel/redux-ts",
     "bugs": "https://github.com/nulliel/redux-ts/issues",
     "homepage": "https://github.com/nulliel/redux-ts#readme",
-    "gitHead": "343de5f3ea8df1e0bbc01d824dc247c704b9a41c"
+    "gitHead": "d93fe34c18fd90d821a835c11c8d9596f661f413",
+    "publishConfig": {
+        "access": "public"
+    }
 }
