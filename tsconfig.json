@@ -30,7 +30,6 @@
     "pretty": true,
     "removeComments": true,
     "skipLibCheck": true,
-    "typeRoots": ["./node_modules/@types", "./node_modules/jest-enzyme"],
     "esModuleInterop": true
   },
   "exclude": [

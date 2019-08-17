@@ -67,5 +67,10 @@
         "transform": {
             "^.+\\.ts$": "ts-jest"
         }
+    },
+    "dependencies": {
+        "@nulliel/hooks": "file:packages/hooks",
+        "@nulliel/middleware": "file:packages/middleware",
+        "@nulliel/store": "file:packages/store"
     }
 }
