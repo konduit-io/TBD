@@ -1,6 +1,6 @@
 {
     "name": "@nulliel/store",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Opinionated and type safe state management",
     "sideEffects": false,
     "author": "nulliel <stephen.ribich@gmail.com>",
