@@ -1,3 +1,8 @@
+
+test("a", () => {
+    expect(1).toBe(1)
+})
+/*
 import { Middleware } from "./types";
 import { createAction } from "./action"
 import { createReducer } from "./reducer"
@@ -129,3 +134,4 @@ test("Effects can get state", (done) => {
 
     store.dispatch(effectAction())
 })
+*/

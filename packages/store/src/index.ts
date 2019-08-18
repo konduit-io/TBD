@@ -4,8 +4,8 @@ export { createReducer } from "./reducer"
 export { createStore } from "./store"
 
 
-export { StateProvider } from "./hook/StateProvider"
-export { useDispatch } from "./hook/useDispatch"
-export { useSlice } from "./hook/useSlice"
+export { StateProvider } from "../../hooks/hook/StateProvider"
+export { useDispatch } from "../../hooks/hook/useDispatch"
+export { useSlice } from "../../hooks/hook/useSlice"
 
 export * from "./types"

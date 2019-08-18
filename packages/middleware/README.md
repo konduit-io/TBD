@@ -1,11 +1,23 @@
-# `dev-tools`
+# `@nulliel/middleware`
 
-> TODO: description
+## Features
+
+* Useful development middleware  
+  * Redux DevTools integration
+  * Redux logger integration
+  * State freezing
+
+## Installation
+
+`npm install --save @nulliel/middleware`
 
 ## Usage
 
 ```
-const devTools = require('dev-tools');
+import { createStore } from "@nulliel/store"
+import { devTools } from "@nulliel/middleware"
 
-// TODO: DEMONSTRATE API
+const store = createStore(devTools)
 ```
+
+

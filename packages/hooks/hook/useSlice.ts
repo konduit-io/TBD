@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react"
 //==============
 // Local Imports
 //==============
-import { Reducer } from "../reducer"
+import { Reducer } from "../../store/src/reducer"
 import { StateContext } from "./stateContext"
 import { Store } from "../types"
 import { useShouldUpdate } from "./useShouldUpdate"
