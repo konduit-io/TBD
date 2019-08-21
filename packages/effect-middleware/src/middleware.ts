@@ -1,24 +1,17 @@
-import {
-    AnyAction,
-    Dispatch,
-    InternalReducer,
-    InternalStore,
-    MiddlewareAPI,
-} from "@nulliel/store"
+import { AnyAction, Dispatch, InternalStore } from "@nulliel/store"
 
-export const getDispatch = (store: InternalStore, api: MiddlewareAPI): Dispatch =>
+import { effects } from "./effect"
+
+export const getDispatch = (store: InternalStore): Dispatch =>
     (action: AnyAction) => {
-        const reducers = action.reducers as Array<InternalReducer<any>>
-        let handled = false
-
-        reducers.forEach((reducer) => {
-            if (reducer.effects.has(action.type)) {
-                (reducer.handlers.get(action.type)!)(api, action.data)
-                handled = true
+        if (effects.hasEffect(action.type)) {
+            // TODO: Test
+            if (action.reducers.length !== 0) {
+                throw new Error(`Action '${action.type}' may not be bound to both an effect and a reducer`)
             }
-        })
 
-        return handled
-            ? null
-            : store.dispatch(action)
+            return effects.runEffect(action)
+        }
+
+        return store.dispatch(action)
     }

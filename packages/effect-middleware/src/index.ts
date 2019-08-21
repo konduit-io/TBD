@@ -1,11 +1,12 @@
-import { InternalStore, Middleware, MiddlewareAPI } from "@nulliel/store"
-import { getDispatch } from "./middleware"
-import { addReducerInjector } from "./reducer"
+import { InternalStore, Middleware } from "@nulliel/store"
 
-export const effectMiddleware: Middleware = (store: InternalStore, api: MiddlewareAPI) => {
-    addReducerInjector(api)
+import { effects } from "./effect"
+import { getDispatch } from "./middleware"
+
+export const effectMiddleware: Middleware = (store: InternalStore) => {
+    effects.setStore(store)
 
     return {
-        dispatch: getDispatch(store, api),
+        dispatch: getDispatch(store),
     }
 }
