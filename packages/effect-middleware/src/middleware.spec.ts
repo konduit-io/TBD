@@ -1,5 +1,5 @@
 import { createAction, createReducer, createStore } from "@nulliel/store"
-import { effectMiddleware } from "./index"
+import { createEffect, effectMiddleware } from "./index"
 
 const store  = createStore(effectMiddleware)
 
@@ -7,10 +7,11 @@ test("Effects run", (done) => {
     const action = createAction("effectsRun", (x: number) => ({ x }))
 
     createReducer({ x: 0 })
-        .effect(action, async (_, payload) => {
-            expect(payload.x).toBe(5)
-            done()
-        })
+
+    createEffect(action, async (_, payload) => {
+        expect(payload.x).toBe(5)
+        done()
+    })
 
     store.dispatch(action(5))
 })
@@ -21,7 +22,8 @@ test("Effects cannot be defined alongside reducers", () => {
     expect(() => {
         createReducer({ x: 0 })
             .on(action, () => ({}))
-            .effect(action, async () => {})
+
+        createEffect(action, async () => {})
     }).toThrow("Duplicate action testEffect registered")
 })
 
@@ -31,9 +33,10 @@ test("Effects can dispatch", () => {
 
     const reducer = createReducer({ x: 0 })
         .on(onAction, (payload) => ({ x: payload.x }))
-        .effect(effectAction, async ({ dispatch }) => {
-            dispatch(onAction(5))
-        })
+
+    createEffect(effectAction, async ({ dispatch }) => {
+        dispatch(onAction(5))
+    })
 
     store.dispatch(effectAction())
 
@@ -47,7 +50,7 @@ test("Effects can get state", (done) => {
 
     store.resolve(reducer)
 
-    reducer.effect(effectAction, async ({ resolve }) => {
+    createEffect(effectAction, async ({ resolve }) => {
         expect(resolve(reducer).x).toBe(73)
         done()
     })

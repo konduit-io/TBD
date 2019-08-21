@@ -16,7 +16,7 @@
     "bugs": "https://github.com/nulliel/TBD/issues",
     "homepage": "https://github.com/nulliel/TBD#readme",
     "dependencies": {
-        "@nulliel/store": "^1.0.3"
+        "@nulliel/store": "file:../store"
     },
     "peerDependencies": {
         "react": ">=16.8.0"
