@@ -8,6 +8,6 @@
     },
     "include": [
         "./src",
-        "./typings.d.ts"
+        "./index.d.ts"
     ]
 }
