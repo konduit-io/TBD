@@ -1,6 +1,6 @@
 {
     "name": "@nulliel/dev-middleware",
-    "version": "0.1.3",
+    "version": "1.0.0",
     "description": "",
     "sideEffects": false,
     "author": "nulliel <stephen.ribich@gmail.com>",
@@ -16,7 +16,7 @@
     "bugs": "https://github.com/nulliel/TBD/issues",
     "homepage": "https://github.com/nulliel/TBD#readme",
     "dependencies": {
-        "@nulliel/cl": "^0.1.3"
+        "@nulliel/cl": "^1.0.0"
     },
     "peerDependencies": {
         "@nulliel/store": "^0.1.3"
