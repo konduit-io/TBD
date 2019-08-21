@@ -1,0 +1,19 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 0%
+        threshhold: null
+      store:
+        flags: store
+        target: 0%
+      hooks:
+        flags: hooks
+        target: 0%
+flags:
+  store:
+    paths:
+      - packages/store
+  hooks:
+    paths:
+      - packages/hooks
