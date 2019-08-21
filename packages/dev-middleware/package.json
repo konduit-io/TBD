@@ -1,5 +1,5 @@
 {
-    "name": "@nulliel/middleware",
+    "name": "@nulliel/dev-middleware",
     "version": "0.1.3",
     "description": "",
     "sideEffects": false,
@@ -12,11 +12,14 @@
         "**/*.ts",
         "**/*.tsx"
     ],
-    "repository": "https://github.com/nulliel/redux-ts",
-    "bugs": "https://github.com/nulliel/redux-ts/issues",
-    "homepage": "https://github.com/nulliel/redux-ts#readme",
+    "repository": "https://github.com/nulliel/TBD",
+    "bugs": "https://github.com/nulliel/TBD/issues",
+    "homepage": "https://github.com/nulliel/TBD#readme",
+    "dependencies": {
+        "@nulliel/cl": "^0.1.3"
+    },
     "peerDependencies": {
-        "@nulliel/store": "^0.1.2"
+        "@nulliel/store": "^0.1.3"
     },
     "publishConfig": {
         "access": "public"

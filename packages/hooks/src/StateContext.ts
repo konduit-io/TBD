@@ -1,10 +1,9 @@
 import { createContext } from "react"
+import { Dispatch, Resolve, Store, WrapReducer } from "@nulliel/store"
 
 //==============
 // Local Imports
 //==============
-import { Dispatch, Resolve, Store, WrapReducer } from "../types"
-
 function contextError() {
     throw new Error("StateContext referenced from outside of a StateProvider")
 }

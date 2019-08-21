@@ -3,12 +3,6 @@ import { useContext } from "react"
 //==============
 // Local Imports
 //==============
-import { StateContext } from "./stateContext"
+import { StateContext } from "./StateContext"
 
-/**
- *
- */
-export function useDispatch()
-{
-    return useContext(StateContext).dispatch
-}
+export const useDispatch = () => useContext(StateContext).dispatch

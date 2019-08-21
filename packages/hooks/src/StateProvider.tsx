@@ -1,11 +1,10 @@
 import React, { ReactChild, useRef } from "react"
+import { Middleware, Store, createStore } from "@nulliel/store"
 
 //==============
 // Local Imports
 //==============
-import { StateContext } from "./stateContext"
-import {Middleware, Store} from "../types"
-import { createStore } from "../../store/src/store"
+import { StateContext } from "./StateContext"
 import { useShouldUpdate } from "./useShouldUpdate"
 
 //======
@@ -16,11 +15,7 @@ export interface ProviderProps {
     middleware?: Middleware[]
 }
 
-/**
- *
- */
-export function StateProvider({ children, middleware }: ProviderProps)
-{
+export const StateProvider = ({ children, middleware }: ProviderProps) => {
     const doUpdate = useShouldUpdate()
     const storeRef = useRef<Store>(doUpdate ? createStore(...middleware || []) : {} as Store)
 

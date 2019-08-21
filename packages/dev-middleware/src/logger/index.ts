@@ -1,32 +1,32 @@
 import { AnyAction, Middleware } from "@nulliel/store"
+import { timer } from "@nulliel/cl"
 
 import { aggregateReducers } from "./stateTransformer"
-import { printBuffer, timer } from "./utils"
+import { LogEntry, print } from "./print"
 
-/**
- * @param store
- * @param dispatch
- */
 export const loggerMiddleware: Middleware = (store, { dispatch }) => {
-    const logBuffer: any[] = []
-
     return {
         dispatch(action: AnyAction) {
-            const logEntry: { [name: string]: any } = {}
+            const logEntry: LogEntry<unknown> = {
+                started:     timer.now(),
+                startedTime: new Date(),
+                prevState:   aggregateReducers(store, ...action.reducers),
+                action,
+            } as LogEntry<unknown>
 
-            logBuffer.push(logEntry)
+            let returnedValue: any
 
-            logEntry.started = timer.now()
-            logEntry.startedTime = new Date()
-            logEntry.prevState = aggregateReducers(store, ...action.reducers)
-            logEntry.action = action
+            try {
+                returnedValue = dispatch(action)
+            }
+            catch (e) {
+                logEntry.error = e
+            }
 
-            const returnedValue = dispatch(action)
-
-            logEntry.took = timer.now() - logEntry.started
+            logEntry.took      = timer.now() - logEntry.started
             logEntry.nextState = aggregateReducers(store, ...action.reducers)
 
-            printBuffer(logBuffer)
+            print(logEntry)
 
             return returnedValue
         },

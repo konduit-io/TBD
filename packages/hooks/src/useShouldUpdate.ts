@@ -1,10 +1,6 @@
 import { useRef } from "react"
 
-/**
- *
- */
-export function useShouldUpdate(deps: unknown[] = [])
-{
+export const useShouldUpdate = (deps: unknown[] = []) => {
     const ref = useRef<unknown[]>()
 
     if (!ref.current) {
@@ -13,12 +9,12 @@ export function useShouldUpdate(deps: unknown[] = [])
     }
 
     if (deps) {
-        if (deps.length != ref.current.length) {
+        if (deps.length !== ref.current.length) {
             ref.current = deps
             return true
         }
 
-        for (let i = 0; i < deps.length; i++) {
+        for (let i = 0; i < deps.length; i += 1) {
             if (deps[i] !== ref.current[i]) {
                 ref.current = deps
                 return true

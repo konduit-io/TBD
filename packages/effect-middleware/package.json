@@ -1,6 +1,6 @@
 {
     "name": "@nulliel/effect-middleware",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "",
     "sideEffects": false,
     "author": "nulliel <stephen.ribich@gmail.com>",
@@ -12,11 +12,11 @@
         "**/*.ts",
         "**/*.tsx"
     ],
-    "repository": "https://github.com/nulliel/redux-ts",
-    "bugs": "https://github.com/nulliel/redux-ts/issues",
-    "homepage": "https://github.com/nulliel/redux-ts#readme",
+    "repository": "https://github.com/nulliel/TBD",
+    "bugs": "https://github.com/nulliel/TBD/issues",
+    "homepage": "https://github.com/nulliel/TBD#readme",
     "peerDependencies": {
-        "@nulliel/store":  "^0.1.2"
+        "@nulliel/store":  "^0.1.3"
     },
     "publishConfig": {
         "access": "public"

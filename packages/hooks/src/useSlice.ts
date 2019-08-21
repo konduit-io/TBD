@@ -1,18 +1,13 @@
 import { useContext, useEffect, useState } from "react"
+import { Reducer, Store } from "@nulliel/store"
 
 //==============
 // Local Imports
 //==============
-import { Reducer } from "../../store/src/reducer"
-import { StateContext } from "./stateContext"
-import { Store } from "../types"
+import { StateContext } from "./StateContext"
 import { useShouldUpdate } from "./useShouldUpdate"
 
-/**
- *
- * @param reducer
- */
-export function useSlice<T>(reducer: Reducer<T>): T {
+export const useSlice = <T>(reducer: Reducer<T>): T => {
     const doUpdate = useShouldUpdate([ reducer ])
 
     const store = useContext(StateContext) as Store
