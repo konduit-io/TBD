@@ -13,13 +13,6 @@ redux.
 
 `npm install --save redux-ts react@latest`
 
-
-###
-
-* Actions
-* Reducers
-* Assigning Actions to Reducers
-
 ## ...
 
 ### Actions
@@ -60,6 +53,53 @@ See the [redux documentation](https://redux.js.org/basics/actions) for an altern
 * Action names must match the following pattern `/^[a-zA-Z0-9_/]+$/`
 
 ### Reducers
+
+
+### Store
+
+The **store** is an object responsible for unifying actions and reducers. 
+The store has the following responsibilities:
+
+* Holds application slices
+* Adds slices to the store via [wrapReducer()](#wrapReducer)
+* Allows access to state via [resolve()](#resolve)
+* Allows state to be updated vis [dispatch(action)](#dispatch)
+
+#### What is a slice?
+
+Compared to Redux, the store does not hold the application state.
+This job is instead deferred to a **Slice**, which is a wrapper around a reducer and its state.
+  
+Slices expose the following API:
+
+* subscribe()
+* resolve() 
+
+## Middleware
+
+## API
+
+### resolve
+
+### dispatch
+
+
+
+
+
+The **store** is responsible for unifying actions and reducers. The store is responsible for the following:
+
+* Holding the application state
+* Resolving slices through `resolve`
+
+
+
+
+
+
+
+
+
 
 ## API
 

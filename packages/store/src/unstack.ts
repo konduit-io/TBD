@@ -1,4 +1,4 @@
-export function unstack<T>(fn: (t: T) => void) {
+export const unstack = <T>(fn: (t: T) => void) => {
     const queue = [] as T[]
     let running = false
 

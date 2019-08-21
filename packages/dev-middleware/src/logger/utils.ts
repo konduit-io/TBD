@@ -1,4 +1,6 @@
-
+// @ts-ignore-file
+// @ts-nocheck
+// @ts-ignore-start
 export const repeat = (str, times) => (new Array(times + 1)).join(str);
 
 export const pad = (num, maxLength) => repeat('0', maxLength - num.toString().length) + num;
@@ -116,11 +118,11 @@ export function printBuffer(buffer) {
             } else logger[nextStateLevel]('next state', nextState);
         }
 
-        if (logger.withTrace) {
-            logger.groupCollapsed('TRACE');
-            logger.trace();
-            logger.groupEnd();
-        }
+        // if (logger.withTrace) {
+        //     logger.groupCollapsed('TRACE');
+        //     logger.trace();
+        //     logger.groupEnd();
+        // }
 
         try {
             logger.groupEnd();
@@ -129,3 +131,4 @@ export function printBuffer(buffer) {
         }
     });
 }
+// @ts-ignore-end

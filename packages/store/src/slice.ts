@@ -1,25 +1,41 @@
+import { AnyAction, InternalSlice, Reducer } from "../index"
+
 type SliceType<TState> = Slice<TState>
 export { SliceType as Slice }
 
-class Slice<TState>
-{
-    private subscribers: Array<(state: any) => unknown> = []
+class Slice<TState> {
+    private readonly reducer: Reducer<TState>
 
     private state: TState
-    private readonly stateEvaluator: () => TState
 
-    constructor(stateEvaluator: () => TState, initialState?: TState)
-    {
-        this.state          = initialState as TState
-        this.stateEvaluator = stateEvaluator
+    private oldState: TState
+
+    private newState: TState
+
+    private subscribers: Array<(state: any) => unknown> = []
+
+    constructor(reducer: Reducer<TState>) {
+        // @ts-ignore
+        this.state = reducer(undefined, { type: "@reducer/init" })
+
+        this.oldState = this.state
+        this.newState = this.state
+
+        this.reducer = reducer
+    }
+
+    updateState(action: AnyAction) {
+        this.oldState = this.state
+        this.newState = this.reducer(this.state, action)
+
+        if (this.oldState !== this.newState) {
+            this.update()
+        }
     }
 
     update() {
-        const oldState = this.state
-        const newState = this.stateEvaluator()
-
-        if (oldState !== newState) {
-            this.state = newState
+        if (this.oldState !== this.newState) {
+            this.state = this.newState
             return true
         }
 
@@ -33,7 +49,7 @@ class Slice<TState>
 
     notify() {
         this.subscribers.slice().forEach(
-            (subscriber) => subscriber(this.resolve())
+            (subscriber) => subscriber(this.resolve()),
         )
     }
 
@@ -46,13 +62,15 @@ class Slice<TState>
 
         this.subscribers.splice(idx, 1)
     }
+
+    // @ts-ignore
+    injectState(newState = this.reducer(undefined, { type: "@reducer/init" })) {
+        if (this.state !== newState) {
+            this.state = newState
+            this.update()
+        }
+    }
 }
 
-export function createSlice<TState>(stateEvaluator: () => TState, initialState?: TState)
-{
-    return new Slice(stateEvaluator, initialState)
-}
-
-export function isSlice<T>(query: unknown): query is Slice<T> {
-    return query && query instanceof Slice
-}
+// eslint-disable-next-line max-len
+export const createSlice = <TState>(reducer: Reducer<TState>) => new Slice(reducer) as unknown as InternalSlice<TState>

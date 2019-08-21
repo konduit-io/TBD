@@ -1,12 +1,7 @@
-
-test("a", () => {
-    expect(1).toBe(1)
-})
-/*
-import { Middleware } from "./types";
+import { createStore } from "./store"
 import { createAction } from "./action"
 import { createReducer } from "./reducer"
-import { createStore } from "./store"
+import { Middleware } from "../index"
 
 test("Throws when an action has no reducers", () => {
     const store  = createStore()
@@ -14,7 +9,7 @@ test("Throws when an action has no reducers", () => {
 
     expect(() => {
         store.dispatch(action(0))
-    }).toThrow("Action 'testNoReducers' has no assigned reducers. Did you forget to use reducer.on(testNoReducers, ...)?")
+    }).toThrow("Action 'testNoReducers' has no assigned reducers")
 })
 
 test("Reducers are called when dispatched", () => {
@@ -22,19 +17,19 @@ test("Reducers are called when dispatched", () => {
     const action = createAction("testDispatch", (x: number) => ({ x }))
 
     const reducer = createReducer({ x: 0 })
-        .on(action, (payload, state) => ({ x: payload.x }))
+        .on(action, (payload) => ({ x: payload.x }))
 
     store.dispatch(action(5))
 
     expect(store.resolve(reducer).x).toBe(5)
 })
 
-test("Calls to dispatch are flattened", done => {
+test("Calls to dispatch are flattened", (done) => {
     const store = createStore()
 
     const action  = createAction("dispatchFlattens")
     const reducer = createReducer({ x: 0 })
-        .on(action, (_, state) => ({ x: state.x + 1}))
+        .on(action, (_, state) => ({ x: state.x + 1 }))
 
     const counter = store.wrapReducer(reducer)
     let count = 0
@@ -45,7 +40,8 @@ test("Calls to dispatch are flattened", done => {
 
         if (state.x < 10) {
             store.dispatch(action())
-        } else {
+        }
+        else {
             expect(count).toBe(10)
             done()
         }
@@ -62,12 +58,15 @@ test("Middleware is applied", () => {
         dispatch(action) {
             middlewareCalled = true
             dispatch(action)
-        }
+        },
     })
 
     const action  = createAction("testMiddlewareIsApplied")
     const reducer = createReducer({ i: 0 })
-        .on(action, (payload) => { reducerCallCount++; return payload })
+        .on(action, (payload) => {
+            reducerCallCount += 1
+            return payload
+        })
 
     const store = createStore(middleware)
 
@@ -81,57 +80,3 @@ test("Middleware is applied", () => {
     expect(middlewareCalled).toBe(true)
     expect(reducerCallCount).toBe(1)
 })
-
-test("Effects run", (done) => {
-    const store  = createStore()
-    const action = createAction("testEffect", (x: number) => ({ x }))
-
-    createReducer({ x: 0 })
-        .effect(action, async (_, payload) => {
-            expect(payload.x).toBe(5)
-            done()
-        })
-
-    store.dispatch(action(5))
-})
-
-test("Effects cannot be defined alongside reducers", () => {
-    const action = createAction("testEffect", (x: number) => ({ x }))
-
-    expect(() => {
-        createReducer({x: 0})
-            .on(action, () => ({}))
-            .effect(action, async (_, payload) => {})
-    }).toThrow("jreijio")
-})
-
-test("Effects can dispatch", () => {
-    const store = createStore()
-
-    const onAction     = createAction("onDispatch", (x: number) => ({ x }))
-    const effectAction = createAction("effectDispatch")
-
-    const reducer = createReducer({ x: 0 })
-        .on(onAction, (payload) => ({ x: payload.x }))
-        .effect(effectAction, async ({ dispatch }, payload) => {
-            dispatch(onAction(5))
-        })
-
-    store.dispatch(effectAction())
-
-    expect(store.resolve(reducer).x).toBe(5)
-})
-
-test("Effects can get state", (done) => {
-    const store = createStore()
-    const effectAction = createAction("effectDispatch")
-
-    const reducer = createReducer({ x: 73 })
-        .effect(effectAction, async ({ resolve }, payload) => {
-            expect(resolve(reducer).x).toBe(73)
-            done()
-        })
-
-    store.dispatch(effectAction())
-})
-*/

@@ -1,13 +1,6 @@
 import { InternalStore, Middleware, Store } from "../index"
 import { resolveMiddleware } from "./middleware"
-
-function createInternalStore(): InternalStore {
-    return {
-        slices:        new Map(),
-        isDispatching: false,
-        isEffect:      false,
-    } as InternalStore
-}
+import { assign } from "./polyfill/object"
 
 /**
  *
@@ -15,11 +8,14 @@ function createInternalStore(): InternalStore {
  *
  * @return Store
  */
-export function createStore(...middleware: Middleware[]): Store {
-    const store = createInternalStore()
-    const api   = resolveMiddleware(store, ...middleware)
+export const createStore = (...middleware: Middleware[]): Store => {
+    const store = {
+        slices:        new Map(),
+        isDispatching: false,
+    } as InternalStore
 
-    Object.assign(store, api)
-
-    return store
+    return assign(
+        store,
+        resolveMiddleware(store, ...middleware),
+    )
 }

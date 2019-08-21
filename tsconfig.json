@@ -17,8 +17,8 @@
       "es2016",
       "es2017"
     ],
-    "target": "es6",
-    "module": "esnext",
+    "target": "es5",
+    "module": "commonjs",
     "moduleResolution": "node",
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
@@ -33,7 +33,6 @@
     "esModuleInterop": true
   },
   "exclude": [
-    "node_modules",
-    "**/*.spec.*"
+    "node_modules"
   ]
 }

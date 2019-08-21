@@ -1,26 +1,28 @@
 import { AnyAction, Dispatch, InternalStore } from "../index"
+import { unstack } from "./unstack"
 
-export function createDispatch(store: InternalStore): Dispatch {
-    function dispatch(action: AnyAction) {
+export const createDispatch = (store: InternalStore): Dispatch => unstack(
+    (action: AnyAction) => {
         if (store.isDispatching) {
-            // error("Reducers may not dispatch actions");
+            throw new Error("Reducers may not dispatch actions")
         }
 
         if (action.reducers.length === 0) {
-            // error("Action '${action.type}' has no assigned reducers.")
+            throw new Error(`Action '${action.type}' has no assigned reducers.` )
         }
 
         const slices = action.reducers.map(store.wrapReducer)
 
         try {
+            // eslint-disable-next-line no-param-reassign
             store.isDispatching = true
             slices.forEach((slice) => slice.updateState(action))
-        } finally {
+        }
+        finally {
+            // eslint-disable-next-line no-param-reassign
             store.isDispatching = false
         }
 
         slices.forEach((slice) => slice.notify())
-    }
-
-    return dispatch // unstack(dispatch)
-}
+    },
+)
