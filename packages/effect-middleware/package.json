@@ -1,6 +1,6 @@
 {
     "name": "@nulliel/effect-middleware",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "",
     "sideEffects": false,
     "author": "nulliel <stephen.ribich@gmail.com>",
