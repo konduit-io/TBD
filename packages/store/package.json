@@ -18,7 +18,6 @@
     "peerDependencies": {
         "react": ">=16.8.0"
     },
-    "gitHead": "d93fe34c18fd90d821a835c11c8d9596f661f413",
     "publishConfig": {
         "access": "public"
     }

@@ -1,5 +1,11 @@
-import { ActionCreator6, AnyAction, Handler, InternalReducer, Reducer } from "../index"
+import { ActionCreator6, AnyAction, Handler, InternalReducer, Reducer, ReducerInjector } from "../index"
 import { assign } from "./polyfill/object"
+
+export const reducerInjectors: Set<ReducerInjector> = new Set()
+
+export const reducerInjector = (injector: ReducerInjector) => {
+    reducerInjectors.add(injector)
+}
 
 /**
  * TODO: Description
@@ -33,6 +39,10 @@ export const createReducer = <S>(initialState: S): Reducer<S> => {
 
         return reducer
     }
+
+    reducerInjectors.forEach((injector) => {
+        injector(reducer as InternalReducer<any>)
+    })
 
     return reducer
 }

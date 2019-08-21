@@ -15,7 +15,9 @@
     "repository": "https://github.com/nulliel/redux-ts",
     "bugs": "https://github.com/nulliel/redux-ts/issues",
     "homepage": "https://github.com/nulliel/redux-ts#readme",
-    "gitHead": "d93fe34c18fd90d821a835c11c8d9596f661f413",
+    "dependencies": {
+        "@nulliel/store": "^0.1.2"
+    },
     "publishConfig": {
         "access": "public"
     }

@@ -5,7 +5,7 @@ import React, { ReactChild, useRef } from "react"
 //==============
 import { StateContext } from "./stateContext"
 import {Middleware, Store} from "../types"
-import { createStore } from "../../../packages/store/src/store"
+import { createStore } from "../../store/src/store"
 import { useShouldUpdate } from "./useShouldUpdate"
 
 //======

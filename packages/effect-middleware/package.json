@@ -16,7 +16,7 @@
     "bugs": "https://github.com/nulliel/redux-ts/issues",
     "homepage": "https://github.com/nulliel/redux-ts#readme",
     "peerDependencies": {
-        "@nulliel/store":  "*"
+        "@nulliel/store":  "^0.1.2"
     },
     "publishConfig": {
         "access": "public"

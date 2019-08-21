@@ -141,12 +141,17 @@ export function createStore(...middleware: Middleware[]): Store
 //===========
 // Middleware
 //===========
+export interface ReducerInjector {
+    (reducer: InternalReducer<unknown>): void
+}
+
 export interface Middleware {
     (store: InternalStore, middlewareAPI: MiddlewareAPI): Partial<MiddlewareAPI>
 }
 
 export interface MiddlewareAPI {
-    dispatch:    Dispatch;
-    resolve:     Resolve;
-    wrapReducer: InternalWrapReducer;
+    dispatch:        Dispatch;
+    resolve:         Resolve;
+    wrapReducer:     InternalWrapReducer;
+    reducerInjector: (injector: ReducerInjector) => void;
 }

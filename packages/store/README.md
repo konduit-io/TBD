@@ -17,7 +17,7 @@ redux.
 
 ### Actions
 
-An action is a data object used to send data to the store. 
+An action is a data object used to describe state changes to the store.
 In its simplest form, an action has the following shape:
 
 ```typescript

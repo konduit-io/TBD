@@ -4,10 +4,16 @@
     "scripts": {
         "bootstrap": "lerna bootstrap --use-workspaces -- --peer",
         "test": "jest",
-        "coverage": "jest --coverage",
+        "coverage": "jest --coverage && codecov --disable=gcov",
         "lint": "lerna exec eslint -- -c ../../.eslintrc src/**/*",
         "clean": "lerna exec rimraf lib",
         "build": "npm run clean && lerna exec tsc"
+    },
+    "dependencies": {
+        "@nulliel/dev-middleware": "file:packages/dev-middleware",
+        "@nulliel/effect-middleware": "file:packages/effect-middleware",
+        "@nulliel/hooks": "file:packages/hooks",
+        "@nulliel/store": "file:packages/store"
     },
     "devDependencies": {
         "@types/jest": "^24.0.17",
@@ -15,6 +21,7 @@
         "@types/react": "^16.9.1",
         "@typescript-eslint/eslint-plugin": "^1.13.0",
         "@typescript-eslint/parser": "^1.13.0",
+        "codecov": "^3.5.0",
         "eslint": "^6.1.0",
         "eslint-config-airbnb-base": "^14.0.0",
         "eslint-config-airbnb-typescript": "^4.0.1",
@@ -43,20 +50,20 @@
             "<rootDir>/packages/(?:.+?)/lib/"
         ],
         "coverageReporters": [
-            "html",
-            "text"
+            "lcov"
         ],
         "coverageThreshold": {
             "global": {
-                "branches": 100,
-                "functions": 100,
-                "lines": 100,
-                "statements": 100
+                "branches": 0,
+                "functions": 0,
+                "lines": 0,
+                "statements": 0
             }
         },
         "moduleFileExtensions": [
             "ts",
-            "js"
+            "js",
+            "d.ts"
         ],
         "testPathIgnorePatterns": [
             "<rootDir>/packages/(?:.+?)/lib/"
@@ -67,10 +74,5 @@
         "transform": {
             "^.+\\.ts$": "ts-jest"
         }
-    },
-    "dependencies": {
-        "@nulliel/hooks": "file:packages/hooks",
-        "@nulliel/middleware": "file:packages/middleware",
-        "@nulliel/store": "file:packages/store"
     }
 }

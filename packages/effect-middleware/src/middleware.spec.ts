@@ -1,9 +1,10 @@
 import { createAction, createReducer, createStore } from "@nulliel/store"
 import { effectMiddleware } from "./index"
 
+const store  = createStore(effectMiddleware)
+
 test("Effects run", (done) => {
-    const store  = createStore()
-    const action = createAction("testEffect", (x: number) => ({ x }))
+    const action = createAction("effectsRun", (x: number) => ({ x }))
 
     createReducer({ x: 0 })
         .effect(action, async (_, payload) => {
@@ -21,12 +22,10 @@ test("Effects cannot be defined alongside reducers", () => {
         createReducer({ x: 0 })
             .on(action, () => ({}))
             .effect(action, async () => {})
-    }).toThrow("jreijio")
+    }).toThrow("Duplicate action testEffect registered")
 })
 
 test("Effects can dispatch", () => {
-    const store = createStore()
-
     const onAction     = createAction("onDispatch", (x: number) => ({ x }))
     const effectAction = createAction("effectDispatch")
 
@@ -42,7 +41,6 @@ test("Effects can dispatch", () => {
 })
 
 test("Effects can get state", (done) => {
-    const store = createStore(effectMiddleware)
     const effectAction = createAction("effectState")
 
     const reducer = createReducer({ x: 73 })

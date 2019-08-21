@@ -3,7 +3,7 @@ import React, { ReactChild } from "react"
 //==============
 // Local Imports
 //==============
-import { StateProvider } from "../hook/StateProvider"
+import { StateProvider } from "../StateProvider"
 
 interface Props {
     children: ReactChild

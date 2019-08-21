@@ -1,7 +1,12 @@
 import { InternalStore, Middleware, MiddlewareAPI } from "@nulliel/store"
-import { getDispatch, getWrapReducer } from "./middleware"
+import { getDispatch } from "./middleware"
+import { addReducerInjector } from "./reducer"
+import "../index"
 
-export const effectMiddleware: Middleware = (store: InternalStore, api: MiddlewareAPI) => ({
-    dispatch:    getDispatch(store, api),
-    wrapReducer: getWrapReducer(store, api),
-})
+export const effectMiddleware: Middleware = (store: InternalStore, api: MiddlewareAPI) => {
+    addReducerInjector(api)
+
+    return {
+        dispatch: getDispatch(store, api),
+    }
+}

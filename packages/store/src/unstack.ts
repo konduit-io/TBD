@@ -6,13 +6,16 @@ export const unstack = <T>(fn: (t: T) => void) => {
         queue.unshift(t)
 
         if (!running) {
-            running = true
+            try {
+                running = true
 
-            while (queue.length) {
-                fn(queue.pop()!)
+                while (queue.length) {
+                    fn(queue.pop()!)
+                }
             }
-
-            running = false
+            finally {
+                running = false
+            }
         }
     }
 }
