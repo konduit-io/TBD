@@ -3,6 +3,8 @@
 > A suite of tools for streamlining front-end development
 
 [![Build Status](https://travis-ci.org/nulliel/TBD.svg?branch=master)](https://travis-ci.org/nulliel/TBD)
+[![codecov](https://codecov.io/gh/nulliel/TBD/branch/master/graph/badge.svg)](https://codecov.io/gh/nulliel/TBD)
+
 
 ## Description
 
