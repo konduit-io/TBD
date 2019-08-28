@@ -24,7 +24,7 @@ export function compose(...middlewares: Middleware[])
 {
     return (store: InternalStore, api: MiddlewareAPI) =>
         middlewares.reduceRight<MiddlewareAPI>(
-            (acc, middleware) => Object.assign({}, acc, middleware(store, api)),
+            (acc, middleware) => Object.assign({}, acc, middleware(store, acc)),
             api,
         )
 }
