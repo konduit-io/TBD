@@ -22,10 +22,9 @@ export function deepFreeze(obj: any)
 
 export function compose(...middlewares: Middleware[])
 {
-    return (store: InternalStore, api: MiddlewareAPI) => {
+    return (store: InternalStore, api: MiddlewareAPI) =>
         middlewares.reduceRight<MiddlewareAPI>(
             (acc, middleware) => Object.assign({}, acc, middleware(store, api)),
             api,
         )
-    }
 }
